@@ -2,9 +2,26 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script>
-
+var gunX = 250;
+function clickLeft(){
+  var c =document.getElementByld("gun");
+  gunX = gunX - 50;
+  c.style.left = gunX;
+}
 </script>
 </head>
 <body bgcolor="9370db" >
+<pre
+style="position:absolute;left:250px;top:100px;"id = "gun">
+ ●●●
+●● ●●
+ ●●●
+</pre>
+<pre style="position:absolute;left:250
+px;top:100px;"id = "left" 
+onclick = "clickLeft();">
+  ♡
+</pre>
+
 </body>
 </html>
