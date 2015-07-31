@@ -8,10 +8,15 @@ function clickLeft(){
   gunX = gunX - 50;
   c.style.left = gunX;
 }
+
 function clickRight(){
   var c =document.getElementById("gun");
   gunX = gunX + 50;
   c.style.left = gunX;
+}
+
+function clickFire(){
+  alert("疲れた");
 }
 </script>
 </head>
@@ -32,7 +37,8 @@ style="position:absolute;left:300px;top:350px;"id = "gun">
   ⭐︎⭐︎⭐︎
   ⭐︎⭐︎⭐︎
 </pre>
-<pre style = "position:absolute;Left:300px;top:500px;"id = "fire">
+<pre style = "position:absolute;Left:300px;top:500px;"id = "fire" onclick="clickFire();
+">
  眠い
 </pre>
 </body>
