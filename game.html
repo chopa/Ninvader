@@ -15,12 +15,50 @@ function clickRight(){
   c.style.left = gunX;
 }
 
+function keyDown(e){
+  // alert("code:" +e.keyCode);
+  if(e.keyCode ==32){
+    clickFire();
+  }
+  if(e.keyCode ==37){
+    clickLeft();
+  }
+  if(e.keyCode ==39){
+    clickRight();
+  }
+}
+
+document.addEventListener("keydown",keyDown);
+
+function makeBullet(){
+  var e = document.createElement("pre");
+  e.innerHTML ="疲れた";
+  e.style.position = "absolute";
+  e.style.top = 100
+  e.style.left = gunX;
+  document.body.appendChild(e);
+  return e;
+}
+
+var bullet = null; //初期値はnull(空)
 function clickFire(){
-  alert("疲れた");
+  bullet = makeBullet();
+}
+
+var timer;
+
+function move(){
+  if (bullet !=null){
+    bullet.style.top = parseInt(bullet.style.top) - 5;
+    if (parseInt(bullet.style.top)<0){
+      document.body.removeChild(bullet);
+      bullet = null;
+    }
+  }
 }
 </script>
 </head>
-<body bgcolor="9370db" >
+<body bgcolor="9370db" onload="timer = setInterval('move()',100)">
 <pre
 style="position:absolute;left:300px;top:350px;"id = "gun">
  ●●●
