@@ -34,7 +34,7 @@ function makeBullet(){
   var e = document.createElement("pre");
   e.innerHTML ="疲れた";
   e.style.position = "absolute";
-  e.style.top = 100
+  e.style.top = 320
   e.style.left = gunX;
   document.body.appendChild(e);
   return e;
@@ -55,7 +55,17 @@ function move(){
       bullet = null;
     }
   }
+  var t =document.getElementById("Target");
+  var x = parseInt(t.style.left);
+  var y = parseInt(t.style.top);
+  t.style.left = x + 5;
+  if (x > 600){
+    t.style.left = 50;
+    t.style.top = y + 30;
+
+  }
 }
+
 </script>
 </head>
 <body bgcolor="9370db" onload="timer = setInterval('move()',100)">
@@ -78,6 +88,12 @@ style="position:absolute;left:300px;top:350px;"id = "gun">
 <pre style = "position:absolute;Left:300px;top:500px;"id = "fire" onclick="clickFire();
 ">
  眠い
+</pre>
+
+<pre style="position:absolute;left:50px;top:10px;" id="Target">
+  睡眠 睡眠
+  睡眠 睡眠
+  睡眠 睡眠
 </pre>
 </body>
 </html>
