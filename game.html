@@ -48,23 +48,36 @@ function clickFire(){
 var timer;
 
 function move(){
+
+  var t = document.getElementById("Target");
+  var x = parseInt(t.style.left);
+  var y = parseInt(t.style.top);
+  t.style.left = x + 50;
+  if (x > 600){
+    t.style.left = 50;
+    t.style.top = y + 30;
+  }
   if (bullet !=null){
-    bullet.style.top = parseInt(bullet.style.top) - 5;
+    var bx = parseInt(bullet.style.left);
+    var by = parseInt(bullet.style.top);
+    bullet.style.top = by - 5;
     if (parseInt(bullet.style.top)<0){
       document.body.removeChild(bullet);
       bullet = null;
     }
+    if (bx < x && x < bx + 50 && by < y && y < by + 50 ){
+      document.body.removeChild(t);
+      clearInterval(timer);
+    }
   }
-  var t =document.getElementById("Target");
-  var x = parseInt(t.style.left);
-  var y = parseInt(t.style.top);
-  t.style.left = x + 5;
-  if (x > 600){
-    t.style.left = 50;
-    t.style.top = y + 30;
 
+  if (y > 350){
+      clearInterval(timer);
   }
+
 }
+
+
 
 </script>
 </head>
