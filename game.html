@@ -40,8 +40,26 @@ function makeBullet(){
   return e;
 }
 
+function makeBomb(){
+  var e = document.createElement("pre");
+  var t = document.getElementById("Target");
+  var x = parseInt(t.style.left);
+  var y = parseInt(t.style.top);
+  e.innerHTML ="睡魔";
+  e.style.position = "absolute";
+  e.style.top = y;
+  e.style.left = x;
+  document.body.appendChild(e);
+  return e;
+}
+
 var bullet = null; //初期値はnull(空)
+var bomb = null;
+
 function clickFire(){
+  if (bullet != null) {
+    dicument.body.removeChild(bullet);
+  }
   bullet = makeBullet();
 }
 
@@ -71,10 +89,31 @@ function move(){
     }
   }
 
+  if (bomb !=null){
+    var bx = parseInt(bomb.style.left);
+    var by = parseInt(bomb.style.top);
+    bomb.style.top = by + 15;
+    if (parseInt(bomb.style.top) > 450){
+      document.body.removeChild(bomb);
+      bomb = null;
+    }
+    var gt = document.getElementById("gun");
+    var gx = parseInt(gt.style.left);
+    var gy = parseInt(gt.style.top);
+
+    if (bx < gx && gx < bx + 150 && by < gy && gy < by + 150 ){
+      document.body.removeChild(gt);
+      clearInterval(timer);
+    }
+  }
   if (y > 350){
       clearInterval(timer);
   }
 
+  var r = Math.floor(Math.random() * 10);
+  if (r == 0 && bomb == null){
+    bomb = makeBomb();
+  }
 }
 
 
