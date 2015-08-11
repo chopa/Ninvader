@@ -5,14 +5,18 @@
 var gunX = 250;
 function clickLeft(){
   var c =document.getElementById("gun");
-  gunX = gunX - 50;
-  c.style.left = gunX;
+  if (c != null){
+    gunX = gunX - 50;
+    c.style.left = gunX;
+  }
 }
 
 function clickRight(){
   var c =document.getElementById("gun");
-  gunX = gunX + 50;
-  c.style.left = gunX;
+  if (c != null){
+    gunX = gunX + 50;
+    c.style.left = gunX;
+  }
 }
 
 function keyDown(e){
@@ -58,7 +62,7 @@ var bomb = null;
 
 function clickFire(){
   if (bullet != null) {
-    dicument.body.removeChild(bullet);
+    document.body.removeChild(bullet);
   }
   bullet = makeBullet();
 }
@@ -78,12 +82,12 @@ function move(){
   if (bullet !=null){
     var bx = parseInt(bullet.style.left);
     var by = parseInt(bullet.style.top);
-    bullet.style.top = by - 5;
+    bullet.style.top = by - 10;
     if (parseInt(bullet.style.top)<0){
       document.body.removeChild(bullet);
       bullet = null;
     }
-    if (bx < x && x < bx + 50 && by < y && y < by + 50 ){
+    if (bx <= x && x <= bx + 100 && by <= y && y <= by + 80 ){
       document.body.removeChild(t);
       clearInterval(timer);
     }
@@ -93,7 +97,7 @@ function move(){
     var bx = parseInt(bomb.style.left);
     var by = parseInt(bomb.style.top);
     bomb.style.top = by + 15;
-    if (parseInt(bomb.style.top) > 450){
+    if (parseInt(bomb.style.top) > 480){
       document.body.removeChild(bomb);
       bomb = null;
     }
@@ -101,7 +105,7 @@ function move(){
     var gx = parseInt(gt.style.left);
     var gy = parseInt(gt.style.top);
 
-    if (bx < gx && gx < bx + 150 && by < gy && gy < by + 150 ){
+    if (bx <= gx && gx <= bx + 75 && by <= gy && gy <= by + 30 ){
       document.body.removeChild(gt);
       clearInterval(timer);
     }
