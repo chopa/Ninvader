@@ -40,8 +40,9 @@ function keyDown(e){
 document.addEventListener("keydown",keyDown);
 
 function makeTarget(x,y){
-  var e = document.createElement("pre");
-  e.innerHTML = "敵敵\n敵敵";
+  var e = document.createElement("img");
+  e.src = "target.png";
+  e.style.width ="50px";
   e.style.position ="absolute";
   e.style.top = y;
   e.style.left = x;
@@ -50,8 +51,9 @@ function makeTarget(x,y){
 }
 
 function makeBullet(){
-  var e = document.createElement("pre");
-  e.innerHTML ="疲れた";
+  var e = document.createElement("img");
+  e.src ="bullet.png";
+  e.style.width = "15px";
   e.style.position = "absolute";
   e.style.top = 320
   e.style.left = gunX;
@@ -60,11 +62,12 @@ function makeBullet(){
 }
 
 function makeBomb(){
-  var e = document.createElement("pre");
+  var e = document.createElement("img");
   var t = target;
   var x = parseInt(t.style.left);
   var y = parseInt(t.style.top);
-  e.innerHTML ="睡魔";
+  e.src ="bomb.png";
+  e.style.width = "25px";
   e.style.position = "absolute";
   e.style.top = y;
   e.style.left = x;
@@ -140,25 +143,21 @@ function move(){
 </script>
 </head>
 <body bgcolor="9370db" onload="setup();timer = setInterval('move()',100)">
-<pre
+<img src ="gun.png" width =60px
 style="position:absolute;left:300px;top:350px;"id = "gun">
- ●●●
-●● ●●
- ●●●
-</pre>
-<pre style="position:absolute;left:50px;top:400px;"id = "left" onclick = "clickLeft();">
-  ♡♡♡
-  ♡♡♡
-  ♡♡♡
-</pre>
-<pre style ="position:absolute;left:550px;top:400px;"id = "Right" onclick = "clickRight();">
-  ⭐︎⭐︎⭐︎
-  ⭐︎⭐︎⭐︎
-  ⭐︎⭐︎⭐︎
-</pre>
-<pre style = "position:absolute;Left:300px;top:500px;"id = "fire" onclick="clickFire();
+</img>
+
+<img src ="left.png" width =50px
+style="position:absolute;left:50px;top:450px;"id = "left" onclick = "clickLeft();">
+</img>
+
+<img src="right.png" width=50px
+ style ="position:absolute;left:550px;top:450px;"id = "Right" onclick = "clickRight();">
+</img>
+
+<img src="fire.png" width=100px
+style = "position:absolute;Left:300px;top:530px;"id = "fire" onclick="clickFire();
 ">
- 眠い
-</pre>
+</img>
 </body>
 </html>
