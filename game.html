@@ -2,6 +2,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script>
+var target = null;
+function setup(){
+  target = makeTarget(50,10);
+}
+
 var gunX = 250;
 function clickLeft(){
   var c =document.getElementById("gun");
@@ -34,6 +39,16 @@ function keyDown(e){
 
 document.addEventListener("keydown",keyDown);
 
+function makeTarget(x,y){
+  var e = document.createElement("pre");
+  e.innerHTML = "敵敵\n敵敵";
+  e.style.position ="absolute";
+  e.style.top = y;
+  e.style.left = x;
+  document.body.appendChild(e);
+  return e;
+}
+
 function makeBullet(){
   var e = document.createElement("pre");
   e.innerHTML ="疲れた";
@@ -46,7 +61,7 @@ function makeBullet(){
 
 function makeBomb(){
   var e = document.createElement("pre");
-  var t = document.getElementById("Target");
+  var t = target;
   var x = parseInt(t.style.left);
   var y = parseInt(t.style.top);
   e.innerHTML ="睡魔";
@@ -71,7 +86,7 @@ var timer;
 
 function move(){
 
-  var t = document.getElementById("Target");
+  var t = target;
   var x = parseInt(t.style.left);
   var y = parseInt(t.style.top);
   t.style.left = x + 50;
@@ -124,7 +139,7 @@ function move(){
 
 </script>
 </head>
-<body bgcolor="9370db" onload="timer = setInterval('move()',100)">
+<body bgcolor="9370db" onload="setup();timer = setInterval('move()',100)">
 <pre
 style="position:absolute;left:300px;top:350px;"id = "gun">
  ●●●
@@ -144,12 +159,6 @@ style="position:absolute;left:300px;top:350px;"id = "gun">
 <pre style = "position:absolute;Left:300px;top:500px;"id = "fire" onclick="clickFire();
 ">
  眠い
-</pre>
-
-<pre style="position:absolute;left:50px;top:10px;" id="Target">
-  睡眠 睡眠
-  睡眠 睡眠
-  睡眠 睡眠
 </pre>
 </body>
 </html>
