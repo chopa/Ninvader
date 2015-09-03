@@ -95,6 +95,10 @@ function clickFire(){
 var timer;
 
 function move(){
+  if (bullet != null){
+    var by = parseInt(bullet.style.top);
+    bullet.style.top = by - 10;
+  }
   for (var i = 0; i < ntargets; i++){
     var t = target[i];
     if (t != null){
@@ -105,10 +109,9 @@ function move(){
         t.style.left = 50;
         t.style.top = y + 30;
       }
-      if (bullet !=null){
+      if (bullet != null){
         var bx = parseInt(bullet.style.left);
         var by = parseInt(bullet.style.top);
-        bullet.style.top = by - 10;
         if (parseInt(bullet.style.top)<0){
           document.body.removeChild(bullet);
           bullet = null;
