@@ -2,14 +2,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script>
+var ntargets = 20;
 var target = [];
-for (var i = 0; i < 10; i++){
+for (var i = 0; i < ntargets; i++){
   target[i] = null;
 }
 
 function setup(){
-  for (var i = 0; i < 10; i++){
-    target[i] = makeTarget(50 - i * 200, 10);
+  for (var i = 0; i < ntargets; i++){
+    target[i] = makeTarget(50 - i * 180, 10);
   }
 }
 
@@ -94,12 +95,12 @@ function clickFire(){
 var timer;
 
 function move(){
-  for (var i = 0; i < 10; i++){
+  for (var i = 0; i < ntargets; i++){
     var t = target[i];
     if (t != null){
       var x = parseInt(t.style.left);
       var y = parseInt(t.style.top);
-      t.style.left = x + 50;
+      t.style.left = x + 25;
       if (x > 600){
         t.style.left = 50;
         t.style.top = y + 30;
@@ -116,6 +117,7 @@ function move(){
           target[i] = null;
           document.body.removeChild(t);
           if (findLiveTarget() == null){
+            alert("ウサギを倒した！おめでとう！");
             clearInterval(timer);
           }
         }
@@ -137,10 +139,15 @@ function move(){
 
     if (bx <= gx && gx <= bx + 75 && by <= gy && gy <= by + 30 ){
       document.body.removeChild(gt);
+      alert ("ウサギにやられた！もう一度やってみよう！");
       clearInterval(timer);
     }
   }
+
+  var t = target[findLiveTarget()];
+  var y = parseInt(t.style.top);
   if (y > 350){
+      alert ("ウサギが畑に侵入してしまった！もう一度やってみよう。");
       clearInterval(timer);
   }
 
@@ -154,7 +161,7 @@ function move(){
 }
 
 function findLiveTarget(){
-  for (var i = 0; i< 10; i++){
+  for (var i = 0; i< ntargets; i++){
     if (target[i] != null){
       return i;
     }
