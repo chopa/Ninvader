@@ -4,10 +4,15 @@
 <script>
 var ntargets = 20;
 var target = [];
+var nbombs = 4;
+var bomb = [];
+
 for (var i = 0; i < ntargets; i++){
   target[i] = null;
 }
-
+for (var i = 0; i < nbombs; i++){
+  bomb[i] = null;
+}
 function setup(){
   for (var i = 0; i < ntargets; i++){
     target[i] = makeTarget(50 - i * 180, 10);
@@ -83,7 +88,6 @@ function makeBomb(i){
 }
 
 var bullet = null; //初期値はnull(空)
-var bomb = null;
 
 function clickFire(){
   if (bullet != null) {
@@ -128,13 +132,14 @@ function move(){
     }
   }
 
-  if (bomb !=null){
-    var bx = parseInt(bomb.style.left);
-    var by = parseInt(bomb.style.top);
-    bomb.style.top = by + 15;
-    if (parseInt(bomb.style.top) > 480){
-      document.body.removeChild(bomb);
-      bomb = null;
+for (var i = 0; i < nbombs; i++){
+  if (bomb[i] != null){
+    var bx = parseInt(bomb[i].style.left);
+    var by = parseInt(bomb[i].style.top);
+    bomb[i].style.top = by + 15;
+    if (parseInt(bomb[i].style.top) > 480){
+      document.body.removeChild(bomb[i]);
+     bomb[i] = null;
     }
     var gt = document.getElementById("gun");
     var gx = parseInt(gt.style.left);
@@ -146,6 +151,7 @@ function move(){
       clearInterval(timer);
     }
   }
+}
 
   var t = target[findLiveTarget()];
   var y = parseInt(t.style.top);
@@ -154,13 +160,15 @@ function move(){
       clearInterval(timer);
   }
 
+for (var i = 0; i < nbombs; i++){
   var r = Math.floor(Math.random() * 10);
-  if (r == 0 && bomb == null){
+  if (r == 0 && bomb[i] == null){
     var live = findLiveTarget();
     if (live != null){
-      bomb = makeBomb(live);
+      bomb[i] = makeBomb(live);
     }
   }
+ }
 }
 
 function findLiveTarget(){
