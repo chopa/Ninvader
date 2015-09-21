@@ -145,7 +145,7 @@ for (var i = 0; i < nbombs; i++){
     var gx = parseInt(gt.style.left);
     var gy = parseInt(gt.style.top);
 
-    if (bx <= gx && gx <= bx + 75 && by <= gy && gy <= by + 30 ){
+    if (bx - 40 <= gx && gx <= bx + 20 && by <= gy && gy <= by + 30 ){
       document.body.removeChild(gt);
       alert ("ウサギにやられた！もう一度やってみよう！");
       clearInterval(timer);
